@@ -44,7 +44,21 @@ namespace NuForVS.Core
                ((style & WS_EX_RTLREADING) == WS_EX_RTLREADING) ||
                ((style & WS_EX_LEFTSCROLLBAR) == WS_EX_LEFTSCROLLBAR));
         }
-
+        
+        public static void NearMargin(IntPtr handle, int margin)
+        {
+            int message = IsRightToLeft(handle) ? EC_RIGHTMARGIN : EC_LEFTMARGIN;
+            if (message == EC_LEFTMARGIN)
+            {
+                margin = margin & 0xFFFF;
+            }
+            else
+            {
+                margin = margin * 0x10000;
+            }
+            SendMessage(handle, EM_SETMARGINS, message, margin);
+        }
+        
         public static void FarMargin(IntPtr handle, int margin)
         {
             int message = IsRightToLeft(handle) ? EC_LEFTMARGIN : EC_RIGHTMARGIN;

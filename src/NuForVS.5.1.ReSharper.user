@@ -7,8 +7,46 @@
     </boolean>
   </SettingsComponent>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:MockFileSystemTests.cs" caret="664" fromTop="23" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Properties/f:AssemblyInfo.cs" caret="37" fromTop="0" />
+      <File id="2FD502E1-4F94-4CEA-BC21-FB7F5E8BA06E/f:app.config" caret="500" fromTop="10" />
+      <File id="2FD502E1-4F94-4CEA-BC21-FB7F5E8BA06E/f:Program.cs" caret="296" fromTop="6" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:Gem.cs" caret="256" fromTop="8" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="2855" fromTop="9" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:Win32.cs" caret="2002" fromTop="14" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:PackageManager.cs" caret="3052" fromTop="7" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:UI/f:AddReferenceForm.cs" caret="3465" fromTop="67" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:MockFileSystemTests.cs" caret="1972" fromTop="66" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:MockFileSystemTests.cs" caret="71" fromTop="2" />
+      <File id="2FD502E1-4F94-4CEA-BC21-FB7F5E8BA06E/f:app.config" caret="478" fromTop="10" />
+      <File id="2FD502E1-4F94-4CEA-BC21-FB7F5E8BA06E/f:app.config" caret="318" fromTop="7" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Properties/f:AssemblyInfo.cs" caret="344" fromTop="8" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Properties/f:AssemblyInfo.cs" caret="582" fromTop="13" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Properties/f:AssemblyInfo.cs" caret="1159" fromTop="32" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Properties/f:AssemblyInfo.cs" caret="37" fromTop="0" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:UI/f:AddReferenceForm.cs" caret="5561" fromTop="13" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:Gem.cs" caret="256" fromTop="8" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:Gem.cs" caret="54325" fromTop="8" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:UI/f:AddReferenceForm.cs" caret="4221" fromTop="20" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:PackageManager.cs" caret="1743" fromTop="10" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:PackageManager.cs" caret="2527" fromTop="15" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:PackageManager.cs" caret="3192" fromTop="23" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:PackageManager.cs" caret="3192" fromTop="27" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:PackageManager.cs" caret="3552" fromTop="31" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="3713" fromTop="42" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="2096" fromTop="16" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="2837" fromTop="25" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="2838" fromTop="19" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="2502" fromTop="7" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="3406" fromTop="21" />
+      <File id="67CD84A6-1176-41EE-A60A-2D6FF42CA88D/f:PackageManagerTests.cs" caret="3629" fromTop="23" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:Win32.cs" caret="1794" fromTop="10" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:Core/f:Win32.cs" caret="2249" fromTop="24" />
+      <File id="150891C1-701F-4982-973E-72015B969777/d:UI/f:AddReferenceForm.cs" caret="591" fromTop="10" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -21,4 +59,24 @@
     </NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:NuForVS.Core.Gem">
+      <Item value="IsRemote" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.ListViewItem">
+      <Item value="SubItems" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.ListViewItem+ListViewSubItemCollection">
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Default">
+      <Item value="bool" priority="0" />
+      <Item value="false" priority="0" />
+      <Item value="if" priority="0" />
+      <Item value="line" priority="0" />
+      <Item value="remoteGems" priority="1" />
+      <Item value="true" priority="0" />
+      <Item value="const" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>

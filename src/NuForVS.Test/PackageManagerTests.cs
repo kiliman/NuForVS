@@ -54,6 +54,43 @@ namespace NuForVS.Tests
         }
 
         [Test]
+        public void SearchGemsShouldReturnCorrectGemCount()
+        {
+            var solutionPath = @"C:\Projects\Test\Solution.sln";
+            var targetFramework = 0;
+            var project = new MockProject(@"C:\Projects\Test\Test.csproj");
+
+            var runner = new MockCommandRunner(new string[] {
+                    "*** LOCAL GEMS ***",
+                    "",
+                    "castle.core (1.2.0.0)",
+                    "",
+                    "*** REMOTE GEMS ***",
+                    "",
+                    "bouncy-castle-java (1.5.0145.2)",
+                    "castle (0.0.3)",
+                    "castle.core (1.2.0.0)",
+                    "castle.dynamicproxy2 (2.2.0.0)",
+                    "castle.windsor (2.1.0.0)"
+            });
+            var fs = new MockFileSystem(new string[] {
+                    @"C:\Projects\Test\lib\log4net\LICENSE.txt",
+                    @"C:\Projects\Test\lib\log4net\log4net.dll",
+                    @"C:\Projects\Test\lib\log4net\log4net.xml",
+                    @"C:\Projects\Test\lib\log4net\NOTICE.txt",
+                    @"C:\Projects\Test\lib\log4net\README.txt"
+            });
+            var pm = new PackageManager(solutionPath, targetFramework, project, runner, fs);
+            var gems = pm.SearchGems("castle", noOutput).ToList();
+
+            Assert.AreEqual(5, gems.Count);
+            Assert.AreEqual("castle.core", gems[0].Name);
+            Assert.AreEqual(false, gems[0].IsRemote);
+            Assert.AreEqual("castle.dynamicproxy2", gems[3].Name);
+            Assert.AreEqual(true, gems[3].IsRemote);
+        }
+
+        [Test]
         public void InstallGemShouldReturn1Reference()
         {
             // mock project

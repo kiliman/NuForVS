@@ -17,6 +17,7 @@ namespace NuForVS.UI
         public AddReferenceForm(string solutionPath, int targetFramework, IProject project, ICommandRunner runner, IFileSystem fs)
         {
             InitializeComponent();
+            Win32.NearMargin(searchGems.Handle, 4);
             Win32.FarMargin(searchGems.Handle, 16);
             Win32.SetCueBanner(searchGems.Handle, "Search Gems");
 
@@ -114,6 +115,7 @@ namespace NuForVS.UI
                     var item = new ListViewItem();
                     item.SubItems.Add(gem.Name);
                     item.SubItems.Add(gem.Version);
+                    if (gem.IsRemote) item.SubItems.Add("Yes");
                     searchResultsList.Items.Add(item);
                 });
                 showView(ViewEnum.SearchResults);

@@ -60,6 +60,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -156,7 +157,8 @@
             this.searchResultsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.searchResultsList.FullRowSelect = true;
             this.searchResultsList.Location = new System.Drawing.Point(29, 54);
             this.searchResultsList.Name = "searchResultsList";
@@ -180,7 +182,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Version";
-            this.columnHeader3.Width = 200;
+            this.columnHeader3.Width = 125;
             // 
             // images
             // 
@@ -387,6 +389,10 @@
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Remote";
+            // 
             // AddReferenceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -452,5 +458,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ImageList images;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

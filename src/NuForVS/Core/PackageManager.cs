@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace NuForVS.Core
@@ -52,30 +53,24 @@ namespace NuForVS.Core
             {
                 // parse line
                 var m = Regex.Match(line, "(.+?)\\s\\((.+?)\\)");
-                if (m.Success)
+                if (!m.Success) continue;
+                var gem = new Gem
+                              {
+                                  Name = m.Groups[1].Value,
+                                  Version = m.Groups[2].Value
+                              };
+                getAssemblies(gem, Path.Combine(_libPath, gem.Name));
+                gems.Add(gem);
+
+                if (gem.Assemblies.Count == 0) continue;
+
+                // count how many assemblies of this gem are currently referenced in project
+                var refCount = gem.Assemblies.Count(filename => _project.HasReference(filename));
+
+                // if assembly count equals ref count then gem is referenced
+                if (gem.Assemblies.Count == refCount)
                 {
-                    var gem = new Gem
-                    {
-                        Name = m.Groups[1].Value,
-                        Version = m.Groups[2].Value
-                    };
-                    getAssemblies(gem, Path.Combine(_libPath, gem.Name));
-                    gems.Add(gem);
-
-                    if (gem.Assemblies.Count == 0) continue;
-
-                    // count how many assemblies of this gem are currently referenced in project
-                    var refCount = 0;
-                    foreach (var filename in gem.Assemblies)
-                    {
-                        if (_project.HasReference(filename)) refCount++;
-                    }
-
-                    // if assembly count equals ref count then gem is referenced
-                    if (gem.Assemblies.Count == refCount)
-                    {
-                        gem.IsReferenced = true;
-                    }
+                    gem.IsReferenced = true;
                 }
             }
             return gems;
@@ -86,23 +81,27 @@ namespace NuForVS.Core
             var gems = new List<Gem>();
 
             output("> gem query -b -n \"" + query + "\"");
-
+            var remoteGems = false;
             foreach (var line in _runner.Run("cmd.exe", "/c gem query -b -n \"" + query + "\""))
             {
                 output(line);
+                if (line == "*** REMOTE GEMS ***")
+                {
+                    remoteGems = true;
+                    continue;
+                }
                 // parse line
                 var m = Regex.Match(line, "(.+?)\\s\\((.+?)\\)");
-                if (m.Success)
+                if (!m.Success) continue;
+                var gem = new Gem
+                              {
+                                  Name = m.Groups[1].Value,
+                                  Version = m.Groups[2].Value,
+                                  IsRemote = remoteGems
+                              };
+                if (!gems.Contains(gem))
                 {
-                    var gem = new Gem
-                    {
-                        Name = m.Groups[1].Value,
-                        Version = m.Groups[2].Value
-                    };
-                    if (!gems.Contains(gem))
-                    {
-                        gems.Add(gem);
-                    }
+                    gems.Add(gem);
                 }
             }
             return gems;
