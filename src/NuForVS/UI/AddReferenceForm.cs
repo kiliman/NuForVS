@@ -24,6 +24,8 @@ namespace NuForVS.UI
             Win32.FarMargin(searchGems.Handle, 16);
             Win32.SetCueBanner(searchGems.Handle, "Search Gems");
             labelVersion.Text = "Version: " + getAssemblyVersion();
+            labelTargetFramework.Text = string.Format("Target Framework: .NET Framework {0}.{1}", targetFramework >> 16,
+                                                      targetFramework & 0xFFFF);
             _views = new Label[] { view0, view1, view2, view3 };
 
             var projectPath = Path.Combine(Path.GetFileName(Path.GetDirectoryName(project.ProjectPath)), Path.GetFileName(project.ProjectPath));

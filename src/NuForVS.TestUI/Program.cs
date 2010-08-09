@@ -27,7 +27,14 @@ namespace NuForVS.TestUI
             var fs = new FileSystem();
             var configManager = new ConfigurationManager();
 
-            Application.Run(new AddReferenceForm(solutionPath, targetFramework, project, runner, fs, configManager));
+            try
+            {
+                Application.Run(new AddReferenceForm(solutionPath, targetFramework, project, runner, fs, configManager));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "NuForVS: Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -65,9 +65,10 @@
             this.gemToInstall = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelOptions = new System.Windows.Forms.Panel();
-            this.configText = new System.Windows.Forms.TextBox();
-            this.saveConfig = new System.Windows.Forms.Button();
             this.cancelConfig = new System.Windows.Forms.Button();
+            this.saveConfig = new System.Windows.Forms.Button();
+            this.configText = new System.Windows.Forms.TextBox();
+            this.labelTargetFramework = new System.Windows.Forms.Label();
             this.panelList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelAbout.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             this.panelList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelList.Controls.Add(this.labelTargetFramework);
             this.panelList.Controls.Add(this.pictureBox1);
             this.panelList.Controls.Add(this.label3);
             this.panelList.Controls.Add(this.comboBox1);
@@ -296,9 +298,9 @@
             this.labelVersion.AutoSize = true;
             this.labelVersion.Location = new System.Drawing.Point(92, 47);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(76, 15);
+            this.labelVersion.Size = new System.Drawing.Size(85, 15);
             this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "Version: 0.1.0";
+            this.labelVersion.Text = "Version: 0.1.0.0";
             // 
             // labelTitle
             // 
@@ -446,16 +448,16 @@
             this.panelOptions.Size = new System.Drawing.Size(280, 266);
             this.panelOptions.TabIndex = 11;
             // 
-            // configText
+            // cancelConfig
             // 
-            this.configText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.configText.Location = new System.Drawing.Point(0, 0);
-            this.configText.Multiline = true;
-            this.configText.Name = "configText";
-            this.configText.Size = new System.Drawing.Size(280, 234);
-            this.configText.TabIndex = 0;
+            this.cancelConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cancelConfig.Location = new System.Drawing.Point(85, 240);
+            this.cancelConfig.Name = "cancelConfig";
+            this.cancelConfig.Size = new System.Drawing.Size(75, 23);
+            this.cancelConfig.TabIndex = 1;
+            this.cancelConfig.Text = "Cancel";
+            this.cancelConfig.UseVisualStyleBackColor = true;
+            this.cancelConfig.Click += new System.EventHandler(this.cancelConfig_Click);
             // 
             // saveConfig
             // 
@@ -468,16 +470,25 @@
             this.saveConfig.UseVisualStyleBackColor = true;
             this.saveConfig.Click += new System.EventHandler(this.saveConfig_Click);
             // 
-            // cancelConfig
+            // configText
             // 
-            this.cancelConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancelConfig.Location = new System.Drawing.Point(85, 240);
-            this.cancelConfig.Name = "cancelConfig";
-            this.cancelConfig.Size = new System.Drawing.Size(75, 23);
-            this.cancelConfig.TabIndex = 1;
-            this.cancelConfig.Text = "Cancel";
-            this.cancelConfig.UseVisualStyleBackColor = true;
-            this.cancelConfig.Click += new System.EventHandler(this.cancelConfig_Click);
+            this.configText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.configText.Location = new System.Drawing.Point(0, 0);
+            this.configText.Multiline = true;
+            this.configText.Name = "configText";
+            this.configText.Size = new System.Drawing.Size(280, 234);
+            this.configText.TabIndex = 0;
+            // 
+            // labelTargetFramework
+            // 
+            this.labelTargetFramework.AutoSize = true;
+            this.labelTargetFramework.Location = new System.Drawing.Point(3, 8);
+            this.labelTargetFramework.Name = "labelTargetFramework";
+            this.labelTargetFramework.Size = new System.Drawing.Size(106, 15);
+            this.labelTargetFramework.TabIndex = 7;
+            this.labelTargetFramework.Text = "Target Framework:";
             // 
             // AddReferenceForm
             // 
@@ -555,5 +566,6 @@
         private System.Windows.Forms.Button cancelConfig;
         private System.Windows.Forms.Button saveConfig;
         private System.Windows.Forms.TextBox configText;
+        private System.Windows.Forms.Label labelTargetFramework;
     }
 }

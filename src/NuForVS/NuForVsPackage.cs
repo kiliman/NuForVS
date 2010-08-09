@@ -80,15 +80,23 @@ namespace NuForVS
         /// </summary>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            // Show a Message Box to prove we were here
-            IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
-            var dte = (EnvDTE.DTE)GetService(typeof(EnvDTE.DTE));
-            var proj = dte.SelectedItems.Item(1).Project as EnvDTE.Project;
-            VSLangProj.VSProject vsproj = proj.Object as VSLangProj.VSProject;
-            var targetFramework = Convert.ToInt32(proj.Properties.Item("TargetFramework").Value);
+            try
+            {
+                // Show a Message Box to prove we were here
+                IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
+                var dte = (EnvDTE.DTE)GetService(typeof(EnvDTE.DTE));
+                var proj = dte.SelectedItems.Item(1).Project as EnvDTE.Project;
+                VSLangProj.VSProject vsproj = proj.Object as VSLangProj.VSProject;
+                var targetFramework = Convert.ToInt32(proj.Properties.Item("TargetFramework").Value);
 
-            var form = new AddReferenceForm(dte.Solution.FullName, targetFramework, new VSProjectWrapper(vsproj), new CommandRunner(), new FileSystem(), new ConfigurationManager());
-            form.ShowDialog();
+                var form = new AddReferenceForm(dte.Solution.FullName, targetFramework, new VSProjectWrapper(vsproj), new CommandRunner(), new FileSystem(), new ConfigurationManager());
+                form.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "NuForVS: Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

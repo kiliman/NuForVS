@@ -13,7 +13,7 @@ namespace NuForVS.Core
 
         public ConfigurationManager()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuForVS");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NuForVS");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
