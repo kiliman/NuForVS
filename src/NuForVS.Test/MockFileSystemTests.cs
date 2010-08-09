@@ -32,26 +32,26 @@ namespace NuForVS.Test
         public void SubFolder1ShouldExist()
         {
             var exists = _mock.FolderExists(@"C:\root\sub1");
-            Assert.AreEqual(true, exists);
+            Assert.IsTrue(exists);
         }
         [Test]
         public void SubFolder2ShouldNotExist()
         {
             var exists = _mock.FolderExists(@"C:\root\sub3");
-            Assert.AreEqual(false, exists);
+            Assert.IsFalse(exists);
         }
 
         [Test]
         public void File1ShouldExist()
         {
             var exists = _mock.FileExists(@"C:\root\sub1\file1.txt");
-            Assert.AreEqual(true, exists);
+            Assert.IsTrue(exists);
         }
         [Test]
         public void File5ShouldNotExist()
         {
             var exists = _mock.FileExists(@"C:\root\sub1\file5.txt");
-            Assert.AreEqual(false, exists);
+            Assert.IsFalse(exists);
         }
 
         [Test]

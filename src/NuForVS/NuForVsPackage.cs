@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using NuForVS.Core;
 using NuForVS.UI;
+using ConfigurationManager = NuForVS.Core.ConfigurationManager;
 
 namespace NuForVS
 {
@@ -86,7 +87,7 @@ namespace NuForVS
             VSLangProj.VSProject vsproj = proj.Object as VSLangProj.VSProject;
             var targetFramework = Convert.ToInt32(proj.Properties.Item("TargetFramework").Value);
 
-            var form = new AddReferenceForm(dte.Solution.FullName, targetFramework, new VSProjectWrapper(vsproj), new CommandRunner(), new FileSystem());
+            var form = new AddReferenceForm(dte.Solution.FullName, targetFramework, new VSProjectWrapper(vsproj), new CommandRunner(), new FileSystem(), new ConfigurationManager());
             form.ShowDialog();
         }
     }

@@ -38,7 +38,11 @@ namespace NuForVS.TestUI
                     @"C:\Projects\Test\lib\nunit\NOTICE.txt",
                     @"C:\Projects\Test\lib\nunit\README.txt",
             });
-            Application.Run(new AddReferenceForm(solutionPath, targetFramework, project, runner, fs));
+            var config = new Configuration {GemCommand = "gem"};
+
+            var configManager = new MockConfigurationManager(config);
+
+            Application.Run(new AddReferenceForm(solutionPath, targetFramework, project, runner, fs, configManager));
         }
     }
 }

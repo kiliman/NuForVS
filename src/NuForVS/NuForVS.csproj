@@ -85,20 +85,25 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\CommandRunner.cs" />
+    <Compile Include="Core\Configuration.cs" />
+    <Compile Include="Core\ConfigurationManager.cs" />
+    <Compile Include="Core\FileSystem.cs" />
+    <Compile Include="Core\Gem.cs" />
+    <Compile Include="Core\ICommandRunner.cs" />
+    <Compile Include="Core\IConfigurationManager.cs" />
+    <Compile Include="Core\IFileSystem.cs" />
+    <Compile Include="Core\IProject.cs" />
+    <Compile Include="Core\PackageManager.cs" />
+    <Compile Include="Core\VSProjectWrapper.cs" />
+    <Compile Include="Core\Win32.cs" />
     <Compile Include="UI\AddReferenceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\AddReferenceForm.Designer.cs">
       <DependentUpon>AddReferenceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\CommandRunner.cs" />
-    <Compile Include="Core\FileSystem.cs" />
-    <Compile Include="Core\Gem.cs" />
     <Compile Include="Guids.cs" />
-    <Compile Include="Core\ICommandRunner.cs" />
-    <Compile Include="Core\IFileSystem.cs" />
-    <Compile Include="Core\IProject.cs" />
-    <Compile Include="Core\PackageManager.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="UI\SelectReferencesForm.cs">
       <SubType>Form</SubType>
@@ -114,8 +119,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VSPackage.resx</DependentUpon>
     </Compile>
-    <Compile Include="Core\VSProjectWrapper.cs" />
-    <Compile Include="Core\Win32.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\AddReferenceForm.resx">
@@ -136,6 +139,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Resources\DefaultConfig.txt" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

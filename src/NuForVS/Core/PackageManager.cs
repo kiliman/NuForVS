@@ -15,8 +15,10 @@ namespace NuForVS.Core
         private IProject _project;
         private ICommandRunner _runner;
         private IFileSystem _fs;
+        private IConfigurationManager _configManager;
+        private Configuration _config;
 
-        public PackageManager(string solutionPath, int targetFramework, IProject project, ICommandRunner runner, IFileSystem fs)
+        public PackageManager(string solutionPath, int targetFramework, IProject project, ICommandRunner runner, IFileSystem fs, IConfigurationManager configManager)
         {
             _solutionPath = solutionPath;
 
@@ -34,6 +36,8 @@ namespace NuForVS.Core
             _project = project;
             _runner = runner;
             _fs = fs;
+            _configManager = configManager;
+            _config = _configManager.GetConfig();
         }
 
         public string RootPath
@@ -44,12 +48,15 @@ namespace NuForVS.Core
         {
             get { return _libPath;  }
         }
-
+        public IProject Project
+        {
+            get { return _project;  }
+        }
         public IEnumerable<Gem> ListGems()
         {
             var gems = new List<Gem>();
 
-            foreach (var line in _runner.Run("cmd.exe", "/c gem list"))
+            foreach (var line in _runner.Run("cmd.exe", "/c " + _config.GemListCommand()))
             {
                 // parse line
                 var m = Regex.Match(line, "(.+?)\\s\\((.+?)\\)");
@@ -80,9 +87,9 @@ namespace NuForVS.Core
         {
             var gems = new List<Gem>();
 
-            output("> gem query -b -n \"" + query + "\"");
+            output("> " + _config.GemSearchCommand(query));
             var remoteGems = false;
-            foreach (var line in _runner.Run("cmd.exe", "/c gem query -b -n \"" + query + "\""))
+            foreach (var line in _runner.Run("cmd.exe", "/c " + _config.GemSearchCommand(query)))
             {
                 output(line);
                 if (line == "*** REMOTE GEMS ***")

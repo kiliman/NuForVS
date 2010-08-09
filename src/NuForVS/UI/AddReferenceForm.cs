@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using NuForVS.Core;
 
@@ -15,21 +16,26 @@ namespace NuForVS.UI
         private Label _lastView;
         private Label[] _views;
 
-        public AddReferenceForm(string solutionPath, int targetFramework, IProject project, ICommandRunner runner, IFileSystem fs)
+        public AddReferenceForm(string solutionPath, int targetFramework, IProject project, ICommandRunner runner, IFileSystem fs, IConfigurationManager configManager)
         {
             InitializeComponent();
             Win32.NearMargin(searchGems.Handle, 4);
             Win32.FarMargin(searchGems.Handle, 16);
             Win32.SetCueBanner(searchGems.Handle, "Search Gems");
-
+            labelVersion.Text = "Version: " + getAssemblyVersion();
             _views = new Label[] { view0, view1, view2, view3 };
 
             var projectPath = Path.Combine(Path.GetFileName(Path.GetDirectoryName(project.ProjectPath)), Path.GetFileName(project.ProjectPath));
             this.Text = "Add Nu Reference to " + projectPath;
 
-            _pkgManager = new PackageManager(solutionPath, targetFramework, project, runner, fs);
+            _pkgManager = new PackageManager(solutionPath, targetFramework, project, runner, fs, configManager);
             buildGemList();
             gemToInstall.Focus();
+        }
+
+        private string getAssemblyVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void showView(ViewEnum view)

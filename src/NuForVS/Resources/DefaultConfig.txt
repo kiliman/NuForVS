@@ -1,0 +1,13 @@
+﻿[general]
+version=0.1
+gemCommand=gem
+gemServer=
+
+# this section is used to list assemblies to auto-reference
+# format is gemname=/path/relative/to/lib/assembly.dll (or *) for all
+# if multiple assemblies, use comma to delimit
+[auto-reference]
+nhibernate=/RequiredBins/*
+nunit=/framework/nunit.framework.dll
+mbunit2=MbUnit.Framework.dll
+xunitnet=xunit.dll
