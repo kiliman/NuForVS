@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -232,6 +233,13 @@ namespace NuForVS.UI
 
         }
 
+        private void linkWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var psi = new ProcessStartInfo(linkWebSite.Text);
+            Process.Start(psi);
+        }
+
+        
 
     }
 

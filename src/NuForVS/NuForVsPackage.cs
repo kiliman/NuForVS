@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
+using System.Windows.Forms;
+using EnvDTE;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using NuForVS.Core;
@@ -85,8 +87,7 @@ namespace NuForVS
             var targetFramework = Convert.ToInt32(proj.Properties.Item("TargetFramework").Value);
 
             var form = new AddReferenceForm(dte.Solution.FullName, targetFramework, new VSProjectWrapper(vsproj), new CommandRunner(), new FileSystem());
-            form.Show();
+            form.ShowDialog();
         }
-
     }
 }
