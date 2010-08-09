@@ -8,17 +8,16 @@ namespace NuForVS.Test
     [TestFixture]
     public class PackageManagerTests
     {
-        [TestCase("net-3.5", true)]
-        [TestCase("NET40", true)]
-        [TestCase("silverlight-2.0", true)]
-        [TestCase("abc123", false)]
-        [TestCase("123xyz", false)]
-        public void IsTargetFramework(string path, bool expectedResult)
+        [TestCase("net-3.5", 0x00030005)]
+        [TestCase("NET40", 0x00040000)]
+        [TestCase("silverlight-2.0", 0)]
+        [TestCase("abc123", 0)]
+        [TestCase("123xyz", 0)]
+        public void GetTargetFrameworkVersion(string path, int expectedResult)
         {
             var pm = ObjectMother.CreatePackageManager();
-            var targetFramework = 0;
 
-            Assert.AreEqual(expectedResult, pm.IsTargetFramework(path, targetFramework));
+            Assert.AreEqual(expectedResult, pm.GetTargetFrameworkVersion(path));
         }
 
         [Test]
@@ -123,6 +122,34 @@ namespace NuForVS.Test
             Assert.AreEqual(2, gems[0].Assemblies.Count);
             Assert.IsFalse(gems[0].IsReferenced);
             Assert.IsFalse(pm.Project.HasReference(@"C:\Projects\Test\lib\log4net\log4net.dll"));
+        }
+
+        [TestCase(0x00020000, @"C:\Projects\Test\lib\log4net\net-2.0\log4net.dll")]
+        [TestCase(0x00030005, @"C:\Projects\Test\lib\log4net\net-3.5\log4net.dll")]
+        [TestCase(0x00040000, @"C:\Projects\Test\lib\log4net\net-4.0\log4net.dll")]
+        public void InstallGemShouldReturnCorrectTargetFramework(int targetFramework, string expectedResults)
+        {
+            var commandLines = new string[]
+            {
+                    "Found Gem",
+                    "Copy From: C:/Tools/Ruby191/lib/ruby/gems/1.9.1/gems/log4net-1.2.10.0/lib",
+                    "Copy To: C:/Projects/Test/lib/log4net"
+            };
+
+            var paths = new string[]
+                            {
+                                @"C:\Projects\Test\lib\log4net\net-2.0\log4net.dll",
+                                @"C:\Projects\Test\lib\log4net\net-3.5\log4net.dll",
+                                @"C:\Projects\Test\lib\log4net\net-4.0\log4net.dll",
+                            };
+
+            var pm = ObjectMother.CreatePackageManager(targetFramework: targetFramework, commandLines: commandLines, paths: paths);
+
+            // mock fs: contents of gem (2 assemblies)
+            var gemname = "log4net";
+            var gems = pm.InstallGem(gemname, noOutput);
+
+            Assert.IsTrue(pm.Project.HasReference(expectedResults));
         }
 
         [Test]

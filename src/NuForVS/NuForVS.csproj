@@ -93,6 +93,7 @@
     <Compile Include="Core\ICommandRunner.cs" />
     <Compile Include="Core\IConfigurationManager.cs" />
     <Compile Include="Core\IFileSystem.cs" />
+    <Compile Include="Core\IniFile.cs" />
     <Compile Include="Core\IProject.cs" />
     <Compile Include="Core\PackageManager.cs" />
     <Compile Include="Core\VSProjectWrapper.cs" />
@@ -139,7 +140,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\DefaultConfig.txt" />
+    <EmbeddedResource Include="Resources\config.ini" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

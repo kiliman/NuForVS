@@ -7,6 +7,8 @@ namespace NuForVS.Core
 {
     public interface IConfigurationManager
     {
+        string ConfigurationAsText { get; }
         Configuration GetConfig();
+        void SaveConfig(string configText);
     }
 }

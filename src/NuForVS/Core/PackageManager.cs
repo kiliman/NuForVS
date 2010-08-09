@@ -17,6 +17,7 @@ namespace NuForVS.Core
         private IFileSystem _fs;
         private IConfigurationManager _configManager;
         private Configuration _config;
+        private Regex _targetRegex = new Regex("(net)[ -]?(\\d)[.]?(\\d*)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public PackageManager(string solutionPath, int targetFramework, IProject project, ICommandRunner runner, IFileSystem fs, IConfigurationManager configManager)
         {
@@ -137,16 +138,19 @@ namespace NuForVS.Core
                 }
             }
 
-            // for each gem, auto reference gems with 1 assembly
+            // for each gem, auto reference gems with 1 assembly (or configured auto-ref)
             // return rest to prompt user
             foreach (var gem in gems)
             {
                 // if only 1 assembly in this gem, auto reference it
-                if (gem.Assemblies.Count == 1)
+                if (gem.Assemblies.Count == 1 || gem.IsAutoReferenced)
                 {
-                    output("Adding Reference: " + gem.Assemblies[0]);
-                    _project.AddReference(gem.Assemblies[0]);
-                    gem.IsReferenced = true;
+                    foreach (var assembly in gem.Assemblies)
+                    {
+                        output("Adding Reference: " + assembly);
+                        _project.AddReference(assembly);
+                        gem.IsReferenced = true;
+                    }
                 }
             }
 
@@ -158,40 +162,71 @@ namespace NuForVS.Core
         {
             if (!_fs.FolderExists(installPath)) return;
 
+            var currentFrameworkVersion = 0;
+
             // check for framework folders
             foreach (var folder in _fs.GetFolders(installPath))
             {
-                if (IsTargetFramework(Path.GetFileName(folder), _targetFramework))
+                var version = GetTargetFrameworkVersion(Path.GetFileName(folder));
+                if (version != 0 && version > currentFrameworkVersion && version <= _targetFramework)
                 {
+                    currentFrameworkVersion = version;
                     installPath = folder;
                 }
             }
 
-            foreach (var filename in _fs.GetFiles(installPath))
+            // look for auto-ref
+            var autoref = _config.AutoReferences.FirstOrDefault(a => a.GemName == gem.Name);
+            if (autoref != null)
             {
-                if (filename.EndsWith(".dll"))
+                gem.IsAutoReferenced = true;
+                foreach (var path in autoref.Assemblies)
                 {
-                    gem.Assemblies.Add(filename);
+                    var filePath = path.Replace("/", "\\");
+                    // strip leading /
+                    if (filePath.StartsWith("\\")) filePath = filePath.Substring(1);
+                    // if ends with * then add all in path
+                    if (filePath.EndsWith("*"))
+                    {
+                        foreach (var filename in _fs.GetFiles(Path.Combine(installPath, Path.GetDirectoryName(filePath))))
+                        {
+                            if (filename.EndsWith(".dll"))
+                            {
+                                gem.Assemblies.Add(filename);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        gem.Assemblies.Add(Path.Combine(installPath, filePath));
+                    }
+                }
+            }
+            else
+            {
+
+
+                foreach (var filename in _fs.GetFiles(installPath))
+                {
+                    if (filename.EndsWith(".dll"))
+                    {
+                        gem.Assemblies.Add(filename);
+                    }
                 }
             }
         }
 
-        public bool IsTargetFramework(string folder, int targetFramework)
+        public int GetTargetFrameworkVersion(string folder)
         {
-            var majorVersion = targetFramework >> 16;
-            var minorVersion = targetFramework & 0xFFFF;
-
-            var re = new Regex("(net|mono|sl|silverlight)[ -]?(\\d+)[.]?(\\d*)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-            var m = re.Match(folder);
-            if (!m.Success) return false;
+            var m = _targetRegex.Match(folder);
+            if (!m.Success) return 0;
 
             var platform = m.Groups[1].Value;
             var platformMajorVersion = Convert.ToInt32(m.Groups[2].Value);
             var platformMinorVersion = 0;
             if (m.Groups[3].Value != "") platformMinorVersion = Convert.ToInt32(m.Groups[3].Value);
 
-            return m.Success;
+            return platformMajorVersion << 16 | platformMinorVersion;
 
         }
     }

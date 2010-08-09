@@ -15,9 +15,19 @@ namespace NuForVS.Test.Mocks
             _config = config;
         }
 
+        public string ConfigurationAsText
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public Configuration GetConfig()
         {
             return _config;
+        }
+
+        public void SaveConfig(string configText)
+        {
+            throw new NotImplementedException();
         }
     }
 }

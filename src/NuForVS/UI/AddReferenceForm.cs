@@ -12,6 +12,7 @@ namespace NuForVS.UI
     public partial class AddReferenceForm : Form
     {
         private PackageManager _pkgManager;
+        private IConfigurationManager _configManager;
         private ViewEnum _activeView;
         private Label _lastView;
         private Label[] _views;
@@ -28,8 +29,9 @@ namespace NuForVS.UI
             var projectPath = Path.Combine(Path.GetFileName(Path.GetDirectoryName(project.ProjectPath)), Path.GetFileName(project.ProjectPath));
             this.Text = "Add Nu Reference to " + projectPath;
 
-            _pkgManager = new PackageManager(solutionPath, targetFramework, project, runner, fs, configManager);
-            buildGemList();
+            _configManager = configManager;
+            _pkgManager = new PackageManager(solutionPath, targetFramework, project, runner, fs, _configManager);
+            buildGemList("");
             gemToInstall.Focus();
         }
 
@@ -60,6 +62,7 @@ namespace NuForVS.UI
                 case ViewEnum.SearchResults:
                     break;
                 case ViewEnum.Options:
+                    showConfig();
                     break;
                 case ViewEnum.About:
                     break;
@@ -75,6 +78,14 @@ namespace NuForVS.UI
             _activeView = view;
         }
 
+        private void showConfig()
+        {
+            configText.Text = _configManager.ConfigurationAsText;
+            configText.Focus();
+            configText.SelectionStart = 0;
+            configText.SelectionLength = 0;
+        }
+
         private void copyDimensions(Control source, Control destination)
         {
             destination.Left = source.Left;
@@ -83,7 +94,7 @@ namespace NuForVS.UI
             destination.Width = source.Width;
         }
 
-        private void buildGemList()
+        private void buildGemList(string currentGemName)
         {
             try
             {
@@ -98,6 +109,7 @@ namespace NuForVS.UI
                     item.SubItems.Add(gem.Name);
                     item.SubItems.Add(gem.Version);
                     gemList.Items.Add(item);
+                    if (gem.Name == currentGemName) item.EnsureVisible();
                 });
                 showView(ViewEnum.AvailableGems);
             }
@@ -139,19 +151,22 @@ namespace NuForVS.UI
             {
                 this.Cursor = Cursors.WaitCursor;
                 clearConsole();
+                var gemName = "";
                 if (gemToInstall.Text.Trim() != "")
                 {
-                    doInstallGem(gemToInstall.Text);
+                    gemName = gemToInstall.Text;
+                    doInstallGem(gemName);
                 }
                 else
                 {
                     var list = _activeView == ViewEnum.AvailableGems ? gemList : searchResultsList;
                     foreach (ListViewItem item in list.SelectedItems)
                     {
-                        doInstallGem(item.SubItems[1].Text);
+                        gemName = item.SubItems[1].Text;
+                        doInstallGem(gemName);
                     }
                 }
-                buildGemList();
+                buildGemList(gemName);
                 gemToInstall.Text = "";
             }
             finally
@@ -166,21 +181,11 @@ namespace NuForVS.UI
 
             var gems = _pkgManager.InstallGem(gemname, outputConsole);
 
-            var s = "";
-            foreach (var gem in gems)
+            var unRefCount = gems.Count(g => g.IsReferenced == false);
+            if (unRefCount > 0)
             {
-                if (!gem.IsReferenced)
-                {
-                    s += gem.Name + "\n";
-                    foreach (var a in gem.Assemblies)
-                    {
-                        s += "* " + a + "\n";
-                    }
-                }
-            }
-            if (s != "")
-            {
-                MessageBox.Show(s);
+                var form = new SelectReferencesForm(_pkgManager.Project, gems);
+                form.ShowDialog();
             }
         }
 
@@ -203,11 +208,13 @@ namespace NuForVS.UI
             {
                 this.Cursor = Cursors.WaitCursor;
                 clearConsole();
+                var gemName = "";
                 foreach (ListViewItem item in list.SelectedItems)
                 {
-                    doInstallGem(item.SubItems[1].Text);
+                    gemName = item.SubItems[1].Text;
+                    doInstallGem(gemName);
                 }
-                buildGemList();
+                buildGemList(gemName);
             }
             finally
             {
@@ -243,6 +250,17 @@ namespace NuForVS.UI
         {
             var psi = new ProcessStartInfo(linkWebSite.Text);
             Process.Start(psi);
+        }
+
+        private void saveConfig_Click(object sender, EventArgs e)
+        {
+            _configManager.SaveConfig(configText.Text);
+            MessageBox.Show("Configuration saved");
+        }
+
+        private void cancelConfig_Click(object sender, EventArgs e)
+        {
+            configText.Text = _configManager.ConfigurationAsText;
         }
 
         

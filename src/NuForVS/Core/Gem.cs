@@ -6,6 +6,7 @@ namespace NuForVS.Core
     {
         public string Name { get; set; }
         public string Version { get; set; }
+        public bool IsAutoReferenced { get; set; }
         public bool IsReferenced { get; set; }
         public bool IsRemote { get; set; }
         public IList<string> Assemblies { get; private set; }

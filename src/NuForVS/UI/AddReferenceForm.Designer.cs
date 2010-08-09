@@ -31,14 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddReferenceForm));
             this.panelList = new System.Windows.Forms.Panel();
-            this.panelAbout = new System.Windows.Forms.Panel();
-            this.labelAuthor = new System.Windows.Forms.Label();
-            this.linkWebSite = new System.Windows.Forms.LinkLabel();
-            this.labelLicense = new System.Windows.Forms.Label();
-            this.labelCopyright = new System.Windows.Forms.Label();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -54,6 +46,14 @@
             this.gemInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gemVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panelAbout = new System.Windows.Forms.Panel();
+            this.labelAuthor = new System.Windows.Forms.Label();
+            this.linkWebSite = new System.Windows.Forms.LinkLabel();
+            this.labelLicense = new System.Windows.Forms.Label();
+            this.labelCopyright = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.view3 = new System.Windows.Forms.Label();
             this.view2 = new System.Windows.Forms.Label();
@@ -65,11 +65,13 @@
             this.gemToInstall = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelOptions = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.configText = new System.Windows.Forms.TextBox();
+            this.saveConfig = new System.Windows.Forms.Button();
+            this.cancelConfig = new System.Windows.Forms.Button();
             this.panelList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelOptions.SuspendLayout();
@@ -90,90 +92,6 @@
             this.panelList.Name = "panelList";
             this.panelList.Size = new System.Drawing.Size(639, 303);
             this.panelList.TabIndex = 0;
-            // 
-            // panelAbout
-            // 
-            this.panelAbout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAbout.BackColor = System.Drawing.Color.White;
-            this.panelAbout.Controls.Add(this.labelAuthor);
-            this.panelAbout.Controls.Add(this.linkWebSite);
-            this.panelAbout.Controls.Add(this.labelLicense);
-            this.panelAbout.Controls.Add(this.labelCopyright);
-            this.panelAbout.Controls.Add(this.labelVersion);
-            this.panelAbout.Controls.Add(this.labelTitle);
-            this.panelAbout.Controls.Add(this.pictureBox3);
-            this.panelAbout.Location = new System.Drawing.Point(397, 351);
-            this.panelAbout.Name = "panelAbout";
-            this.panelAbout.Size = new System.Drawing.Size(603, 300);
-            this.panelAbout.TabIndex = 11;
-            // 
-            // labelAuthor
-            // 
-            this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Location = new System.Drawing.Point(92, 91);
-            this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(231, 15);
-            this.labelAuthor.TabIndex = 5;
-            this.labelAuthor.Text = "Author: Michael Carter (Twitter: @kiliman)";
-            // 
-            // linkWebSite
-            // 
-            this.linkWebSite.AutoSize = true;
-            this.linkWebSite.Location = new System.Drawing.Point(92, 135);
-            this.linkWebSite.Name = "linkWebSite";
-            this.linkWebSite.Size = new System.Drawing.Size(228, 15);
-            this.linkWebSite.TabIndex = 4;
-            this.linkWebSite.TabStop = true;
-            this.linkWebSite.Text = "http://wiki.github.com/kiliman/NuForVS/";
-            this.linkWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWebSite_LinkClicked);
-            // 
-            // labelLicense
-            // 
-            this.labelLicense.AutoSize = true;
-            this.labelLicense.Location = new System.Drawing.Point(92, 113);
-            this.labelLicense.Name = "labelLicense";
-            this.labelLicense.Size = new System.Drawing.Size(193, 15);
-            this.labelLicense.TabIndex = 3;
-            this.labelLicense.Text = "Licensed under Apache 2.0 License.";
-            // 
-            // labelCopyright
-            // 
-            this.labelCopyright.AutoSize = true;
-            this.labelCopyright.Location = new System.Drawing.Point(92, 69);
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(287, 15);
-            this.labelCopyright.TabIndex = 2;
-            this.labelCopyright.Text = "Copyright © 2010 SystemEx.NET. All Rights Reserved.";
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(92, 47);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(76, 15);
-            this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "Version: 0.1.0";
-            // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(86, 12);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(247, 32);
-            this.labelTitle.TabIndex = 1;
-            this.labelTitle.Text = "Nu for Visual Studio";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -318,6 +236,90 @@
             this.gemVersion.Text = "Version";
             this.gemVersion.Width = 200;
             // 
+            // panelAbout
+            // 
+            this.panelAbout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelAbout.BackColor = System.Drawing.Color.White;
+            this.panelAbout.Controls.Add(this.labelAuthor);
+            this.panelAbout.Controls.Add(this.linkWebSite);
+            this.panelAbout.Controls.Add(this.labelLicense);
+            this.panelAbout.Controls.Add(this.labelCopyright);
+            this.panelAbout.Controls.Add(this.labelVersion);
+            this.panelAbout.Controls.Add(this.labelTitle);
+            this.panelAbout.Controls.Add(this.pictureBox3);
+            this.panelAbout.Location = new System.Drawing.Point(397, 351);
+            this.panelAbout.Name = "panelAbout";
+            this.panelAbout.Size = new System.Drawing.Size(603, 300);
+            this.panelAbout.TabIndex = 11;
+            // 
+            // labelAuthor
+            // 
+            this.labelAuthor.AutoSize = true;
+            this.labelAuthor.Location = new System.Drawing.Point(92, 91);
+            this.labelAuthor.Name = "labelAuthor";
+            this.labelAuthor.Size = new System.Drawing.Size(231, 15);
+            this.labelAuthor.TabIndex = 5;
+            this.labelAuthor.Text = "Author: Michael Carter (Twitter: @kiliman)";
+            // 
+            // linkWebSite
+            // 
+            this.linkWebSite.AutoSize = true;
+            this.linkWebSite.Location = new System.Drawing.Point(92, 135);
+            this.linkWebSite.Name = "linkWebSite";
+            this.linkWebSite.Size = new System.Drawing.Size(228, 15);
+            this.linkWebSite.TabIndex = 4;
+            this.linkWebSite.TabStop = true;
+            this.linkWebSite.Text = "http://wiki.github.com/kiliman/NuForVS/";
+            this.linkWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWebSite_LinkClicked);
+            // 
+            // labelLicense
+            // 
+            this.labelLicense.AutoSize = true;
+            this.labelLicense.Location = new System.Drawing.Point(92, 113);
+            this.labelLicense.Name = "labelLicense";
+            this.labelLicense.Size = new System.Drawing.Size(193, 15);
+            this.labelLicense.TabIndex = 3;
+            this.labelLicense.Text = "Licensed under Apache 2.0 License.";
+            // 
+            // labelCopyright
+            // 
+            this.labelCopyright.AutoSize = true;
+            this.labelCopyright.Location = new System.Drawing.Point(92, 69);
+            this.labelCopyright.Name = "labelCopyright";
+            this.labelCopyright.Size = new System.Drawing.Size(287, 15);
+            this.labelCopyright.TabIndex = 2;
+            this.labelCopyright.Text = "Copyright © 2010 SystemEx.NET. All Rights Reserved.";
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(92, 47);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(76, 15);
+            this.labelVersion.TabIndex = 2;
+            this.labelVersion.Text = "Version: 0.1.0";
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(86, 12);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(247, 32);
+            this.labelTitle.TabIndex = 1;
+            this.labelTitle.Text = "Nu for Visual Studio";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(16, 15);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.White;
@@ -435,22 +437,47 @@
             // 
             this.panelOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelOptions.BackColor = System.Drawing.Color.White;
-            this.panelOptions.Controls.Add(this.label2);
-            this.panelOptions.Location = new System.Drawing.Point(72, 351);
+            this.panelOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(58)))), ((int)(((byte)(86)))));
+            this.panelOptions.Controls.Add(this.cancelConfig);
+            this.panelOptions.Controls.Add(this.saveConfig);
+            this.panelOptions.Controls.Add(this.configText);
+            this.panelOptions.Location = new System.Drawing.Point(46, 351);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(280, 252);
+            this.panelOptions.Size = new System.Drawing.Size(280, 266);
             this.panelOptions.TabIndex = 11;
             // 
-            // label2
+            // configText
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Coming soon...";
+            this.configText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.configText.Location = new System.Drawing.Point(0, 0);
+            this.configText.Multiline = true;
+            this.configText.Name = "configText";
+            this.configText.Size = new System.Drawing.Size(280, 234);
+            this.configText.TabIndex = 0;
+            // 
+            // saveConfig
+            // 
+            this.saveConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveConfig.Location = new System.Drawing.Point(4, 240);
+            this.saveConfig.Name = "saveConfig";
+            this.saveConfig.Size = new System.Drawing.Size(75, 23);
+            this.saveConfig.TabIndex = 1;
+            this.saveConfig.Text = "Save";
+            this.saveConfig.UseVisualStyleBackColor = true;
+            this.saveConfig.Click += new System.EventHandler(this.saveConfig_Click);
+            // 
+            // cancelConfig
+            // 
+            this.cancelConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cancelConfig.Location = new System.Drawing.Point(85, 240);
+            this.cancelConfig.Name = "cancelConfig";
+            this.cancelConfig.Size = new System.Drawing.Size(75, 23);
+            this.cancelConfig.TabIndex = 1;
+            this.cancelConfig.Text = "Cancel";
+            this.cancelConfig.UseVisualStyleBackColor = true;
+            this.cancelConfig.Click += new System.EventHandler(this.cancelConfig_Click);
             // 
             // AddReferenceForm
             // 
@@ -474,10 +501,10 @@
             this.Text = "Add Nu Reference...";
             this.panelList.ResumeLayout(false);
             this.panelList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelAbout.ResumeLayout(false);
             this.panelAbout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -525,6 +552,8 @@
         private System.Windows.Forms.LinkLabel linkWebSite;
         private System.Windows.Forms.Label labelLicense;
         private System.Windows.Forms.Label labelAuthor;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button cancelConfig;
+        private System.Windows.Forms.Button saveConfig;
+        private System.Windows.Forms.TextBox configText;
     }
 }
