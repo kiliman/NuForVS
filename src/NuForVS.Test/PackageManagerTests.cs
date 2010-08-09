@@ -225,7 +225,8 @@ namespace NuForVS.Test
                                 @"C:\Projects\Test\lib\castle.core\Castle.Core.xml",
                             };
 
-            var pm = ObjectMother.CreatePackageManager(commandLines: commandLines, paths: paths);
+            var targetFramework = 0x00030005;
+            var pm = ObjectMother.CreatePackageManager(targetFramework: targetFramework, commandLines: commandLines, paths: paths);
             var gemname = "castle.dynamicproxy2";
             var gems = pm.InstallGem(gemname, noOutput);
 

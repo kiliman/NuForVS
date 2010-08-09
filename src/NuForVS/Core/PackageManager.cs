@@ -33,7 +33,7 @@ namespace NuForVS.Core
                 _rootPath = Path.GetDirectoryName(_rootPath);
             }
             _libPath = Path.Combine(_rootPath, "lib");
-            _targetFramework = targetFramework;
+            _targetFramework = targetFramework == 0 ? 0x00020000 : targetFramework; // default to 2.0
             _project = project;
             _runner = runner;
             _fs = fs;
