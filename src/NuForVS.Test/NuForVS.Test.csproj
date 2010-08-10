@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationTests.cs" />
     <Compile Include="MockFileSystemTests.cs" />
     <Compile Include="Mocks\MockCommandRunner.cs" />
     <Compile Include="Mocks\MockConfigurationManager.cs" />

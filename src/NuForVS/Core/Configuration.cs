@@ -18,7 +18,7 @@ namespace NuForVS.Core
 
         public string GemSearchCommand(string query)
         {
-            return GemCommand + " query \"" + query + "\" --both" + (string.IsNullOrEmpty(GemServer) ? "" : " --source " + GemServer); 
+            return GemCommand + " query -n \"" + query + "\" --both" + (string.IsNullOrEmpty(GemServer) ? "" : " --source " + GemServer); 
         }
 
         public IList<AutoReference> AutoReferences { get; private set; }
