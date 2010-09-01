@@ -7,9 +7,9 @@ namespace NuForVS.Test
     public class ConfigurationTests
     {
         [TestCase("gem", "", "gem list")]
-        [TestCase("gem", "myserver", "gem list --source myserver")]
+        [TestCase("gem", "myserver", "gem list")]
         [TestCase("igem", "", "igem list")]
-        [TestCase("igem", "myserver", "igem list --source myserver")]
+        [TestCase("igem", "myserver", "igem list")]
         public void VerifyListGemCommand(string gemCommand, string gemServer, string expectedResult)
         {
             var config = new Configuration {GemCommand = gemCommand, GemServer = gemServer};

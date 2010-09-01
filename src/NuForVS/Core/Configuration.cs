@@ -13,7 +13,7 @@ namespace NuForVS.Core
 
         public string GemListCommand()
         {
-            return GemCommand + " list" + (string.IsNullOrEmpty(GemServer) ? "" : " --source " + GemServer);
+            return GemCommand + " list";
         }
 
         public string GemSearchCommand(string query)

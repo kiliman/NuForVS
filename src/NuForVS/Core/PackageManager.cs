@@ -121,12 +121,12 @@ namespace NuForVS.Core
 
             // build list of gems and assemblies installed by nu in _root/lib
             output("> nu install " + gemname);
-            foreach (var line in _runner.Run("cmd.exe", "/c nu install " + gemname, _rootPath))
+            foreach (var line in _runner.Run("cmd.exe", "/c nu install " + gemname + " --verbose", _rootPath))
             {
                 output(line);
                 if (line.StartsWith("Copy To:"))
                 {
-                    var installPath = line.Substring(9).Replace("/", "\\");
+                    var installPath = Path.GetFullPath(line.Substring(9).Replace("/", "\\"));
                     var name = Path.GetFileName(installPath);
 
                     var gem = new Gem { Name = name };
